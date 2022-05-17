@@ -189,12 +189,13 @@ textarea {
     .muratoryigit {
         flex-direction: column;
     }
-    .muratoryigit h2 {
+    .muratoryigit > h2 {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: -2px;
     }
-    .murat label, #murat label, .yigit label , #yigit label {
+    .murat > label, #murat > label, .yigit > label , #yigit > label {
         font-size: 10px;
     }
 }
