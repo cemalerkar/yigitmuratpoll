@@ -196,6 +196,10 @@ textarea {
         margin-top: -2px;
         margin-left: 0;
         margin-right: 0;
+        
+    }
+    #yigit > input[type='radio']:checked:after ,  #murat > input[type='radio']:checked:after ,  #murat > input[type='radio']:after, #yigit > input[type='radio']:after{
+        margin: 0;
     }
     .murat > label, #murat > label, .yigit > label , #yigit > label {
         font-size: 10px;
