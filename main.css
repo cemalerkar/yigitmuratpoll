@@ -194,6 +194,8 @@ textarea {
         align-items: center;
         justify-content: center;
         margin-top: -2px;
+        margin-left: 0;
+        margin-right: 0;
     }
     .murat > label, #murat > label, .yigit > label , #yigit > label {
         font-size: 10px;
