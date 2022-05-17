@@ -63,35 +63,6 @@ body {
 #yigit, #murat {
     margin-left: 10px;
 }
-input[type='radio']:after {
-    margin-left: 1px;
-    width: 8px;
-    height: 8px;
-    border-radius: 15px;
-    top: -2px;
-    left: -1px;
-    position: relative;
-    background-color: var(--beyaz);
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid white;
-    cursor: pointer;
-}
-input[type='radio']:checked:after {
-    margin-left: 1px;
-    width: 8px;
-    height: 8px;
-    border-radius: 15px;
-    top: -2px;
-    left: -1px;
-    position: relative;
-    background-color: var(--kirmizi);
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid white;
-}
 .poll-middle {
     display: flex;
     margin: 20px 0;
@@ -197,10 +168,6 @@ textarea {
         margin-left: 0;
         margin-right: 0;
         
-    }
-    #yigit > input[type='radio']:checked:after ,  #murat > input[type='radio']:checked:after ,  #murat > input[type='radio']:after, #yigit > input[type='radio']:after{
-        margin: 0;
-        content: '';
     }
     .murat > label, #murat > label, .yigit > label , #yigit > label {
         font-size: 10px;
