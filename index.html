@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="icon" href="img/sitelogo.png" />
+    <link rel="stylesheet" href="main.css">
+    <script src="poll.js"></script>
+    <title>YAÖ - MAGF | Hangi Tür Videoların Gelmesini Tercih Edersin?</title>
+</head>
+<body>
+    <div class="container">
+        <form id="form">
+            <div class="form">
+                <div class="poll-top">
+                    <h1>Hangi Tür Videoların Gelmesini İstersin?</h1>
+                </div>
+                <div class="muratoryigit">
+                    <h2>Hangi Kanal için: </h2>
+                    <div class="yigit">
+                        <input type="radio" name="muratoryigit" id="yigit" checked onclick="yigitClick()" class="yigitkanal channelChecked">
+                        <label for="yigit">Yiğit Arda Öztürk</label>
+                    </div>
+                    <div class="murat">
+                        <input type="radio" name="muratoryigit" id="murat" onclick="muratClick()" class="muratkanal">
+                        <label for="murat">Murat Engin Ekin</label>
+                    </div>
+                </div>
+                <div class="poll-middle">
+                    <div class="option" id="o1" onclick="optionOneSelect()">
+                        <img src="img/minecraft.png" id="img-one" class="option1">
+                        <div>
+                            <input type="radio" name="option" id="option1" class="option1">
+                            <label for="option1">Agalarla Minecraft</label>
+                        </div>
+                    </div>
+                    <div class="option" id="o2" onclick="optionTwoSelect()">
+                        <img src="img/spaceengineers.png" id="img-two" class="option2">
+                        <div>
+                            <input type="radio" name="option" id="option2" class="option2">
+                            <label for="option2">Space Engineers</label>
+                        </div>
+                    </div>
+                    <div class="option" id="o3" onclick="optionThreeSelect()">
+                        <img src="img/indie.png" id="img-three" class="option3 ">
+                        <div>
+                            <input type="radio" name="option" id="option3" class="option3">
+                            <label for="option3">Indie Oyunlar</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="other-option" id="oother">
+                    <div class="other">
+                        <input type="radio" name="option" id="option-other" checked onclick="optionOtherSelect()" class="subjectChecked">
+                        <label for="option-other">Diğer : </label>
+                        <textarea name="other-text" id="other-text" cols="60" rows="3" placeholder="İstediğiniz video türünü buraya yazabilirsiniz."></textarea>
+                    </div>
+                </div>
+                <div class="poll-bottom">
+                    <input type="button" value="Gönder" id="send">
+                </div>
+                <div class="copyright">
+                    <a id="made-by" href="https://www.instagram.com/yardaoztrk">İtibardan Tasarruf Olmaz İnstagram Hesabı</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+        import { getDatabase, ref, set, child, update, remove,} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-database.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDITfdqG00qxg5wfC_IGtlWPdV4zuh-pJc",
+          authDomain: "poll-5825d.firebaseapp.com",
+          projectId: "poll-5825d",
+          databaseURL: "https://poll-5825d-default-rtdb.europe-west1.firebasedatabase.app",
+          storageBucket: "poll-5825d.appspot.com",
+          messagingSenderId: "420636483991",
+          appId: "1:420636483991:web:33c968940cbf6dd00c24d2"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+
+        
+        var Btn = document.getElementById("send")
+        var Kanal = document.getElementsByClassName("channelChecked")
+        var YigitKanal = document.getElementById("yigit")
+        var MuratKanal = document.getElementById("murat")
+        var Oyun = document.getElementsByClassName("subjectChecked")
+        var AgalarlaMc = document.getElementById("o1")
+        var SpaceEng = document.getElementById("o2")
+        var IndieOyun = document.getElementById("o3")
+        var Diger = document.getElementById("option-other")
+        var DigerYazi = document.getElementById("other-text")
+        const ID = Date.now()
+
+
+        function Check() {
+            if(YigitKanal.classList.contains("channelChecked")){
+                Kanal = "Yigit"
+            } else if(MuratKanal.classList.contains("channelChecked") ) {
+                Kanal = "Murat"
+            } else{
+                Kanal = "Channel Error"
+            }
+            if(o1.classList.contains("subjectChecked")) {
+                Oyun = "Agalarla Minecraft"
+            } else if(o2.classList.contains("subjectChecked")) {
+                Oyun = "Space Engineers"
+            } else if(o3.classList.contains("subjectChecked")) {
+                Oyun = "Indie Oyunlar"
+            } else if(Diger.classList.contains("subjectChecked")) {
+                if(DigerYazi.value == "") {
+                    alert("Diğer seçeneği seçiliyken yazı bölgesi boş bırakılamaz.")
+                    location.reload()
+                } else {
+                    Oyun = DigerYazi.value
+                }
+            }
+        }
+
+        function sendToDB() {
+                set(ref(db, "İstekler/" + Kanal + "/" + ID), {
+                    IstenenOyun: Oyun,
+                })
+                .then(() => {
+                    location.reload()
+                })
+        }
+
+        Btn.addEventListener("click", Check);
+        Btn.addEventListener("click", sendToDB);
+      </script>
+</body>
+</html>
