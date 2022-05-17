@@ -13,6 +13,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     text-decoration: none;
+    transition: 0.5s;
 }
 
 body {
@@ -147,4 +148,82 @@ textarea {
     opacity: 0.2;
     margin-top: 20px;
     color: red;
+}
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 690px) {
+    h1 {
+        font-size: 20px;
+    }
+    .poll-middle {
+        flex-direction: column;
+        margin: 0;
+    }
+    .option {
+        margin: 5px;
+    }
+    .form, #form {
+        margin: 0;
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width: 577px) {
+    .murat label, #murat label, .yigit label , #yigit label {
+        font-size: 13px;
+    }
+    .muratoryigit > h2 {
+        font-size: 13px;
+    }
+    h1 {
+        font-size: 15px;
+    }
+    .other > textarea {
+        width: 20em;
+    }
+}
+@media only screen and (max-width: 502px) {
+    .muratoryigit {
+        flex-direction: column;
+    }
+    .muratoryigit h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .murat label, #murat label, .yigit label , #yigit label {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width:432px) {
+    .other > textarea {
+        width: 10em;
+        height: 10em;
+    }
+    h1 {
+        font-size: 12px;
+    }
+    #made-by {
+        font-size: 11px;
+    }
+}
+@media only screen and (max-width:363px) {
+    h1 {
+        font-size: 10px;
+    }
+    #made-by {
+        font-size: 9px;
+    }
+}
+@media only screen and (max-width:319px) {
+    .other > textarea {
+        width: 7em;
+        height: 13em;
+    }
+    #made-by {
+        font-size: 7px;
+    }
 }
